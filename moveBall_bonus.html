@@ -1,0 +1,50 @@
+<body style="background-color: black">
+  <div
+    id="ball"
+    style="
+      z-index: 5;
+      position: absolute;
+      left: 0px;
+      top: 300px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: green;
+    "
+  ></div>
+
+  <script>
+    var velocityX = 5;
+    var velocityY = 3;
+    var positionX = 0;
+    var positionY = 0;
+    var ball = document.getElementById("ball");
+
+    function moveball() {
+      positionX = positionX + velocityX;
+      positionY = positionY + velocityY;
+
+      if (positionX > window.innerWidth || positionX < 0) {
+        velocityX = -velocityX;
+        changeBallColor();
+      }
+      if (positionY > window.innerHeight || positionY < 0) {
+        velocityY = -velocityY;
+        changeBallColor();
+      }
+
+      ball.style.left = positionX + "px";
+      ball.style.top = positionY + "px";
+    }
+    setInterval(moveball, 10);
+
+    function changeBallColor() {
+      const letters = "0123456789ABCDEF";
+      let color = "#";
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      ball.style.backgroundColor = color;
+    }
+  </script>
+</body>
